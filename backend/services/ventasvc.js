@@ -33,7 +33,7 @@ const getVentas = async (filters) => {
     })
 }
 async function getVentaByID (idVenta){
-    const productoCompleto = ''
+    let productoCompleto = ''
     const venta = await Ventas.findOne({
         where:{
             IdVenta : idVenta

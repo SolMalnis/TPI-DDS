@@ -1,5 +1,5 @@
 import { DataTypes, Sequelize } from "sequelize";
-import sequelize from "../data/db";
+import sequelize from "../data/db.js";
 
 const Ventas = sequelize.define(
     "Ventas",
@@ -308,7 +308,7 @@ const Ventas = sequelize.define(
     
   })
 
-  const TiposArticulos = Sequelize.define("TiposArticulos",{
+  const TiposArticulos = sequelize.define("TiposArticulos",{
     IdTipo:{
       type: DataTypes.INTEGER,
       primaryKey: true,
@@ -335,7 +335,7 @@ const Ventas = sequelize.define(
   })
 
 
-const Proveedores = Sequelize.define("Proveedores",{
+const Proveedores = sequelize.define("Proveedores",{
   IdProveedor: {
     type: DataTypes.INTEGER,
       primaryKey: true,
@@ -365,8 +365,8 @@ const Proveedores = Sequelize.define("Proveedores",{
   Ventas.hasOne(Vendedores, {foreignKey: "IdVendedor"})
   Vendedores.belongsTo(Ventas, { foreignKey: "IdVendedor" });
 
-  VentasDetalles.hasOne(Articulos, {foreignKey: "IdArticulo"})
-  Articulos.belongsTo(VentasDetalles, { foreignKey: "IdArticulo" });
+//VentasDetalles.hasOne(Articulos, {foreignKey: "IdArticulo"})
+  //Articulos.belongsTo(VentasDetalles, { foreignKey: "IdArticulo" });
 
   Clientes.hasOne(Ciudades, {foreignKey: "IdCiudad"})
   Ciudades.belongsTo(Clientes, { foreignKey: "IdCiudad" });
@@ -374,9 +374,11 @@ const Proveedores = Sequelize.define("Proveedores",{
   Articulos.hasOne(TiposArticulos, {foreignKey: "IdTipo"})
   TiposArticulos.belongsTo(Articulos, { foreignKey: "IdTipo" });
   
-  Articulos.hasOne(Proveedores, {foreignKey: "IdProveedor"})
-  Proveedores.belongsTo(Articulos, { foreignKey: "IdProveedor" });
+  /*Articulos.hasOne(Proveedores, {foreignKey: "IdProveedor"})
+  Proveedores.belongsTo(Articulos, { foreignKey: "IdProveedor" });*/
 
+  Articulos.hasOne(Proveedores, { as: 'Proveedor', foreignKey: 'IdProveedor' })
+ /* Proveedores.belongsTo(Articulos, { as: 'Articulos', foreignKey: 'IdProveedor' });*/
+  
 
-
-  export default {Ventas, VentasDetalles, Articulos, Clientes, Vendedores, Ciudades, Proveedores, TiposArticulos}
+  export {Ventas, VentasDetalles, Articulos, Clientes, Vendedores, Ciudades, Proveedores, TiposArticulos}

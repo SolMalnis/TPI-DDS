@@ -1,4 +1,5 @@
-import {Articulos, TiposArticulos, Proveedores} from '../model/ventas.js'
+
+import { Articulos, TiposArticulos, Proveedores} from '../model/ventas.js'
 
 import {Op} from "sequelize"
 
@@ -69,14 +70,14 @@ const eliminarArticulo = async (id) => {
 }
 
 async function getArticuloByID (idArt){
-    const productoCompleto = ''
+    let productoCompleto = ''
     const articulo = await Articulos.findOne({
         where:{
             IdArticulo : idArt
         },
         include: [
-            { model: Proveedores, as: 'Proveedores',},
-            { model: TiposArticulos, as: 'TiposArticulos'}
+            { model: Proveedores, as: 'Proveedor',},
+            { model: TiposArticulos, as: 'TiposArticulo'}
               ]
     })
     if (articulo){
@@ -87,8 +88,8 @@ async function getArticuloByID (idArt){
             Stock : articulo.Stock,
             FechaAlta: articulo.FechaAlta,
             Activo: articulo.Activo,
-            Tipo: articulo.TiposArticulos.NombreTipo,
-            Proveedor : articulo.Proveedores.NombreProveedor
+            Tipo: articulo.TiposArticulo.NombreTipo,
+            Proveedor : articulo.Proveedor.NombreProveedor
         }
         return (productoCompleto)
     }else {

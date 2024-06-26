@@ -226,6 +226,14 @@ const Ventas = sequelize.define(
       },
       Idciudad : {
         type : DataTypes.INTEGER
+      },
+      fechaAlta :{
+        type: DataTypes.DATE,
+        validate: {
+          notEmpty: {
+            args: true,
+            msg: "fecha de alta es requerido",
+          }}
       }
   })
 
@@ -272,6 +280,18 @@ const Ventas = sequelize.define(
             msg: "Apellido debe ser tipo carateres, entre 5 y 60 de longitud",
           },
         }
+      },
+      fechaAlta: {
+        type: DataTypes.DATE,
+        validate: {
+          notEmpty: {
+            args: true,
+            msg: "fecha de alta es requerido",
+          }}
+
+      },
+      FechaBaja:{
+        type : DataTypes.DATE
       }
       
   })

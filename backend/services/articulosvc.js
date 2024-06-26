@@ -10,7 +10,6 @@ async function getAll(){
 const insertarArticulo = async (ArticuloCmd) => {
     console.log(ArticuloCmd)
     const resultado = await Articulos.create({
-        IdArticulo :ArticuloCmd.IdArticulo,
         NombreArticulo: ArticuloCmd.NombreArticulo,
         Precio : ArticuloCmd.Precio,
         Stock : ArticuloCmd.Stock,
@@ -22,7 +21,7 @@ const insertarArticulo = async (ArticuloCmd) => {
     })
     return {
         IdArticulo: resultado.dataValues.IdArticulo,
-        NombreArticulo: resultado.dataValues.TNombreArticulo,
+        NombreArticulo: resultado.dataValues.NombreArticulo,
 
     };
 }

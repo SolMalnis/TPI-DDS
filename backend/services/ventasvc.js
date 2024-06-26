@@ -58,24 +58,19 @@ async function getVentaByID (idVenta){
 }
 
 
-const insertarVentas = async (ArticuloCmd) => {
-    console.log(ArticuloCmd)
+const insertarVentas = async (venta) => {
+    console.log(venta)
     const resultado = await Articulos.create({
-        IdArticulo :ArticuloCmd.IdArticulo,
-        NombreArticulo: ArticuloCmd.NombreArticulo,
-        Precio : ArticuloCmd.Precio,
-        Stock : ArticuloCmd.Stock,
-        FechaAlta : ArticuloCmd.FechaAlta,
-        Activo: true,
-        IdTipo: ArticuloCmd.IdTipo,
-        IdProveedor : ArticuloCmd.IdProveedor
+       
+        IdCliente: venta.IdVendedor,
+        IdVendedor:venta.IdVendedor ,
+        Fecha: venta.Fecha,
+        Total: venta.Total,
         
     })
     return {
-        IdArticulo: resultado.dataValues.IdArticulo,
-        NombreArticulo: resultado.dataValues.TNombreArticulo,
-
+        IdArticulo: resultado.dataValues.IdVenta
     };
 }
 
-export default {getVentas, getVentaByID}
+export default {getVentas, getVentaByID, insertarVentas}

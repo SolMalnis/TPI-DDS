@@ -24,17 +24,26 @@ const insertarCliente = async (cliente) => {
 
 
 async function get_one (id){
+    let persona = ""
     const cliente = await Clientes.findOne({
         where:{
             IdVendedor : id 
         },
         include: 
-            { model: Ciudades, as: 'Ciudades',}
+            { model: Ciudades, as: 'Ciudade',}
               
     })
     if (cliente){
+        persona = {
+            DNI : cliente.DNI,
+            NombreCliente: cliente.NombreCliente,
+            ApellidoCliente:cliente.ApellidoCliente,
+            Ciudad: cliente.Ciudades.NombreCiudad,
+            FechaAlta: cliente.FechaAlta
+
+        }
         
-        return cliente
+        return persona
     }else {
         return ("no hay tal cliente")
     }

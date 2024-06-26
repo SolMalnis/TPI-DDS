@@ -3,7 +3,7 @@ import articulosvc from "../services/articulosvc";
 import TablaArticulos from "./TablaArticulos"
 
 
-export default function Ventas (){
+export default function Articulos (){
     const [rows, setRows] = useState([])
     //const [action, setAction] = useState('C')
 

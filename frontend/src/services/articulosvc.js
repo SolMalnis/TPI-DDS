@@ -1,4 +1,4 @@
-const URL = 'http://localhost:3001/articulos'
+const URL = 'http://localhost:3000/articulos'
 
 async function getArticulos(){
     const res = await fetch(URL)
